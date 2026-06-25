@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Lora } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import { Header } from "@/lib/components/header";
 import { Footer } from "@/lib/components/footer";
@@ -26,6 +27,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 		<Header/>
 		<main className="flex-1">{children}</main>
 		<Footer/>
+		<Toaster
+			position="bottom-right"
+			toastOptions={{
+				classNames: {
+					toast: "!bg-surface !text-ink !border-border",
+					description: "!text-ink-muted",
+				},
+			}}
+		/>
 		</body>
 		</html>
 	);

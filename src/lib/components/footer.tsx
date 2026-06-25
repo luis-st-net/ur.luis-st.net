@@ -12,6 +12,9 @@ export async function Footer() {
 					© {year} Luis Staudt, {dict.site.name}. {dict.footer.rights}
 				</p>
 				<nav className="flex items-center gap-4">
+					<Link href="/contact" className="hover:text-ink">
+						{dict.footer.contact}
+					</Link>
 					<Link href="/imprint" className="hover:text-ink">
 						{dict.footer.imprint}
 					</Link>

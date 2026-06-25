@@ -23,7 +23,10 @@ export async function Header() {
 					<Button asChild variant="ghost" size="sm">
 						<Link href="/about">{dict.nav.about}</Link>
 					</Button>
-					
+					<Button asChild variant="ghost" size="sm">
+						<Link href="/contact">{dict.nav.contact}</Link>
+					</Button>
+
 					<LanguageSwitcher locale={locale} label={dict.nav.language}/>
 					
 					<Button asChild variant="outline" size="sm" className="ml-1">
