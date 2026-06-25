@@ -51,17 +51,17 @@ export function PaperTabs({
 }) {
 	const [readerOpen, setReaderOpen] = useState(false);
 	const hasSources = sources.length > 0;
-
+	
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-
+	
 	const tabParam = searchParams.get("tab");
 	let activeTab = TAB_VALUES.includes(tabParam as TabValue) ? (tabParam as TabValue) : "abstract";
 	if (activeTab === "sources" && !hasSources) {
 		activeTab = "abstract";
 	}
-
+	
 	function handleTabChange(value: string) {
 		const params = new URLSearchParams(searchParams.toString());
 		if (value === "abstract") {
@@ -72,7 +72,7 @@ export function PaperTabs({
 		const qs = params.toString();
 		router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
 	}
-
+	
 	return (
 		<>
 			<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">

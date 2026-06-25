@@ -13,6 +13,6 @@ app.prepare().then(() => {
 		const parsedUrl = parse(req.url, true);
 		handle(req, res, parsedUrl).then(r => {});
 	}).listen(port, hostname);
-
+	
 	console.log(`> Server listening at http://${hostname}:${port} as ${dev ? "development" : process.env.NODE_ENV}`);
 });

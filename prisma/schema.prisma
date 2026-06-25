@@ -1,76 +1,76 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+	provider = "prisma-client"
+	output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+	provider = "postgresql"
 }
 
 model Language {
-  id             String   @id @default(cuid())
-  code           String   @unique
-  name           String
-  translationKey String
-  sortOrder      Int      @default(0)
-  createdAt      DateTime @default(now())
+	id             String   @id @default(cuid())
+	code           String   @unique
+	name           String
+	translationKey String
+	sortOrder      Int      @default(0)
+	createdAt      DateTime @default(now())
 
-  translations PaperTranslation[]
+	translations PaperTranslation[]
 
-  @@index([sortOrder])
+	@@index([sortOrder])
 }
 
 model Paper {
-  id          String   @id @default(cuid())
-  icon        Bytes?
-  iconMime    String?
-  publishedAt DateTime @default(now())
-  createdAt   DateTime @default(now())
+	id          String   @id @default(cuid())
+	icon        Bytes?
+	iconMime    String?
+	publishedAt DateTime @default(now())
+	createdAt   DateTime @default(now())
 
-  translations PaperTranslation[]
+	translations PaperTranslation[]
 
-  @@index([publishedAt])
+	@@index([publishedAt])
 }
 
 model PaperTranslation {
-  id          String    @id @default(cuid())
-  paperId     String
-  languageId  String
-  title       String
-  description String
-  abstract    String    @db.Text
-  content     String    @db.Text
-  pdf         Bytes
-  pdfHash     String
-  pdfFileName String?
-  updatedAt   DateTime?
-  createdAt   DateTime  @default(now())
+	id          String    @id @default(cuid())
+	paperId     String
+	languageId  String
+	title       String
+	description String
+	abstract    String    @db.Text
+	content     String    @db.Text
+	pdf         Bytes
+	pdfHash     String
+	pdfFileName String?
+	updatedAt   DateTime?
+	createdAt   DateTime  @default(now())
 
-  paper    Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
-  language Language @relation(fields: [languageId], references: [id], onDelete: Restrict)
-  sources  Source[]
+	paper    Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+	language Language @relation(fields: [languageId], references: [id], onDelete: Restrict)
+	sources  Source[]
 
-  @@unique([paperId, languageId])
-  @@index([languageId])
+	@@unique([paperId, languageId])
+	@@index([languageId])
 }
 
 model Source {
-  id            String  @id @default(cuid())
-  translationId String
-  order         Int     @default(0)
-  citationKey   String
-  entryType     String
-  title         String?
-  authors       String?
-  year          String?
-  journal       String?
-  publisher     String?
-  doi           String?
-  url           String?
-  fields        Json?
-  raw           String  @db.Text
+	id            String  @id @default(cuid())
+	translationId String
+	order         Int     @default(0)
+	citationKey   String
+	entryType     String
+	title         String?
+	authors       String?
+	year          String?
+	journal       String?
+	publisher     String?
+	doi           String?
+	url           String?
+	fields        Json?
+	raw           String  @db.Text
 
-  translation PaperTranslation @relation(fields: [translationId], references: [id], onDelete: Cascade)
+	translation PaperTranslation @relation(fields: [translationId], references: [id], onDelete: Cascade)
 
-  @@index([translationId])
+	@@index([translationId])
 }

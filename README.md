@@ -43,12 +43,12 @@ admin part manages them.
 
 Copy `template.env` to `.env` and fill it in. Key variables:
 
-| Variable | Purpose |
-| --- | --- |
-| `DATABASE_URL` | Postgres connection string |
-| `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` | bundled DB credentials |
-| `ADMIN_ALLOWED_CIDR` | CIDR allowed to reach `/admin` (default `10.2.0.0/16`) |
-| `WEBSITE_OWNER`, `OWNER_*` | imprint details |
+| Variable                                              | Purpose                                                |
+|-------------------------------------------------------|--------------------------------------------------------|
+| `DATABASE_URL`                                        | Postgres connection string                             |
+| `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` | bundled DB credentials                                 |
+| `ADMIN_ALLOWED_CIDR`                                  | CIDR allowed to reach `/admin` (default `10.2.0.0/16`) |
+| `WEBSITE_OWNER`, `OWNER_*`                            | imprint details                                        |
 
 ## Development
 

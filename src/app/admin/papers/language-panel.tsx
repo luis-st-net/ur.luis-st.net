@@ -203,7 +203,7 @@ export function LanguagePanel({
 					</DialogFooter>
 				</DialogContent>
 			</Dialog>
-
+			
 			<Dialog open={contentDialogOpen} onOpenChange={setContentDialogOpen}>
 				<DialogContent className="max-w-2xl">
 					<DialogHeader>
