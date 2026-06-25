@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 		default: "Unserious Research",
 		template: "%s · Unserious Research",
 	},
-	description: "Rigorous answers to questions nobody asked.",
+	description: "Unreasonably thorough answers to questions nobody asked.",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

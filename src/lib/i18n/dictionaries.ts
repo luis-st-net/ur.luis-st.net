@@ -8,7 +8,7 @@
 export const en = {
 	site: {
 		name: "Unserious Research",
-		tagline: "Rigorous answers to questions nobody asked.",
+		tagline: "Unreasonably thorough answers to questions nobody asked.",
 	},
 	nav: {
 		home: "Home",
