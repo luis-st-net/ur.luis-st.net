@@ -9,7 +9,7 @@ export async function Footer() {
 		<footer className="mt-16 border-t border-border">
 			<div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-3 px-4 py-8 text-sm text-ink-muted sm:flex-row">
 				<p>
-					© {year} {dict.site.name}. {dict.footer.rights}
+					© {year} Luis Staudt, {dict.site.name}. {dict.footer.rights}
 				</p>
 				<nav className="flex items-center gap-4">
 					<Link href="/imprint" className="hover:text-ink">

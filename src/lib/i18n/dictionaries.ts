@@ -132,16 +132,16 @@ export const en = {
 	},
 	about: {
 		title: "About",
-		lead: "Unserious Research is where the side quests get written down at unreasonable length.",
+		lead: "Where a harmless question accidentally turns into a paper.",
 		body: [
-			"Every so often a question grabs me by the collar. Not an important one. Nobody is waiting for the answer, no grant depends on it, no one gets promoted. Just a question stubborn enough that the only way to make it leave is to write several pages at it.",
-			"So I go down a rabbit hole and write it up. Then another. This site is the pile that results.",
-			"Everything here is researched with real, faintly excessive rigour and absolutely zero consequence. Treat it as a lab notebook for curiosity that escaped containment and was never recaptured.",
-			"In short: rigorous answers to questions nobody asked. Enjoy them, argue with them, send them to a friend who also didn't ask. Just do not cite them. They are not that kind of paper, and I am very much not that kind of researcher.",
+			"Every so often a question grabs me by the collar. Not an important one, heaven forbid. Nobody is waiting for the answer, no funding body is lurking in the background, no committee convenes, no one will ever be promoted for it. It is merely a question so outrageously stubborn that the only way to be rid of it is to write several pages at it until one of the two parties gives up. (Usually the question. Sometimes me.)",
+			"So I let myself fall down a rabbit hole and write it all down. Then the next one. This site is the pile that accumulates along the way: meticulously kept, utterly purposeless. What is it all for? Nothing. That is not an accident, that is the concept.",
+			"Everything here is researched with real, faintly intrusive thoroughness and a guaranteed zero consequences. Treat it as the lab notebook of a curiosity that broke out of quarantine at some point and was never recaptured. There are plenty of footnotes anyway, not because they are needed, but because they look so pretty.",
+			"In short: over-thorough answers to questions nobody asked. Enjoy them, contradict them loudly, forward them to someone who also didn't ask. Just do not cite them. These are not that kind of paper, and I am, with all due respect, very much not that kind of researcher.",
 		],
 		quotableTitle: "Why \"not quotable\"?",
 		quotableBody:
-			"Because these are rabbit holes, not peer review. The rigour is real; the stakes are imaginary. If one of these ends up in your reference list, that is a matter between you and your conscience.",
+			"Peer-reviewed by no one, proofread by the question itself. The care is real; the significance is entirely made up. Should one of these documents ever end up in your bibliography, that is a matter solely between you and your conscience.",
 	},
 	imprint: {
 		title: "Imprint",
@@ -149,6 +149,20 @@ export const en = {
 		contact: "Contact:",
 		mail: "Mail:",
 		disclaimerTitle: "Disclaimer",
+		disclaimers: [
+			{
+				title: "Liability for content",
+				body: "The contents of this website have been created with the greatest care. However, I cannot assume any liability for the correctness, completeness and topicality of the contents. As the operator of this private website, I am responsible for my own content in accordance with general legislation. However, as a private individual, I am not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. As soon as I become aware of such infringements, I will remove this content immediately.",
+			},
+			{
+				title: "Liability for links",
+				body: "This website contains links to external websites of third parties over whose content I have no influence. Therefore, I cannot accept any liability for this third-party content. The respective provider or operator of the pages is always responsible for the content of the linked pages. If I become aware of any legal infringements, I will remove such links immediately.",
+			},
+			{
+				title: "Copyright",
+				body: "The content and works on this site created by me as the site operator are subject to German copyright law. Reproduction, editing, distribution and any kind of exploitation outside the limits of copyright law require my written consent. The white papers published here are explicitly not intended to be cited as academic sources.",
+			},
+		],
 	},
 	dataPolicy: {
 		title: "Data Policy",
@@ -181,7 +195,7 @@ export type Dictionary = typeof en;
 export const de: Dictionary = {
 	site: {
 		name: "Unserious Research",
-		tagline: "Rigorose Antworten auf Fragen, die niemand gestellt hat.",
+		tagline: "Übergründliche Antworten auf Fragen, die niemand gestellt hat.",
 	},
 	nav: {
 		home: "Start",
@@ -305,16 +319,16 @@ export const de: Dictionary = {
 	},
 	about: {
 		title: "Über",
-		lead: "Unserious Research ist der Ort, an dem die side quests in unangemessener Länge aufgeschrieben werden.",
+		lead: "Wo aus einer harmlosen Frage versehentlich ein Paper wird.",
 		body: [
-			"Hin und wieder packt mich eine Frage am Kragen. Keine wichtige. Niemand wartet auf die Antwort, kein Fördergeld hängt daran, niemand wird befördert. Nur eine Frage, die so stur ist, dass man sie nur loswird, indem man mehrere Seiten gegen sie schreibt.",
-			"Also falle ich in ein rabbit hole und schreibe es auf. Dann noch eins. Diese Seite ist der Stapel, der dabei herauskommt.",
-			"Alles hier ist mit echter, leicht übertriebener Sorgfalt recherchiert und völlig folgenlos. Betrachte es als Laborbuch für Neugier, die aus der Quarantäne ausgebrochen und nie wieder eingefangen wurde.",
-			"Kurz gesagt: rigorose Antworten auf Fragen, die niemand gestellt hat. Genieße sie, streite mit ihnen, schick sie an jemanden, der auch nicht gefragt hat. Nur zitieren solltest du sie nicht. Es sind nicht diese Art Paper, und ich bin erst recht nicht diese Art Forscher.",
+			"Hin und wieder packt mich eine Frage am Kragen. Keine wichtige, Gott bewahre. Niemand wartet auf die Antwort, kein Drittmittelgeber lauert im Hintergrund, kein Gremium tagt, niemand wird dafür je befördert. Es ist bloß eine Frage, die so unverschämt stur ist, dass man sie nur loswird, indem man mehrere Seiten gegen sie schreibt, bis eine von beiden Parteien aufgibt. (Meistens die Frage. Manchmal ich.)",
+			"Also lasse ich mich in ein rabbit hole fallen und schreibe alles mit. Dann das nächste. Diese Seite ist der Stapel, der dabei anfällt: penibel geführt, vollkommen zweckfrei. Wozu das Ganze? Zu nichts. Das ist kein Versehen, das ist das Konzept.",
+			"Recherchiert wird hier mit echter, leicht übergriffiger Gründlichkeit und mit garantiert null Konsequenzen. Betrachte es als Laborbuch einer Neugier, die irgendwann aus der Quarantäne ausgebrochen und nie wieder eingefangen wurde. Fußnoten gibt es trotzdem reichlich, nicht weil sie nötig wären, sondern weil sie so hübsch aussehen.",
+			"Kurz gesagt: übergründliche Antworten auf Fragen, die niemand gestellt hat. Genieße sie, widersprich ihnen lautstark, schick sie weiter an jemanden, der ebenfalls nicht gefragt hat. Nur zitieren solltest du sie nicht. Das sind nicht diese Art Paper, und ich bin, bei allem Respekt, erst recht nicht diese Art Forscher.",
 		],
 		quotableTitle: "Warum „nicht zitierfähig“?",
 		quotableBody:
-			"Weil das rabbit holes sind, kein Peer Review. Die Sorgfalt ist echt; der Einsatz ist eingebildet. Wenn eines davon in deinem Literaturverzeichnis landet, ist das eine Sache zwischen dir und deinem Gewissen.",
+			"Peer-reviewed von niemandem, gegengelesen von der Frage selbst. Die Sorgfalt ist echt; die Bedeutung ist frei erfunden. Sollte eines dieser Dokumente jemals in deinem Literaturverzeichnis landen, ist das eine Angelegenheit ausschließlich zwischen dir und deinem Gewissen.",
 	},
 	imprint: {
 		title: "Impressum",
@@ -322,6 +336,20 @@ export const de: Dictionary = {
 		contact: "Kontakt:",
 		mail: "Mail:",
 		disclaimerTitle: "Haftungsausschluss",
+		disclaimers: [
+			{
+				title: "Haftung für Inhalte",
+				body: "Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann ich jedoch keine Haftung übernehmen. Als Betreiber dieser privaten Website bin ich gemäß den allgemeinen Gesetzen für eigene Inhalte verantwortlich. Als Privatperson bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Sobald ich von solchen Rechtsverletzungen Kenntnis erlange, werde ich diese Inhalte umgehend entfernen.",
+			},
+			{
+				title: "Haftung für Links",
+				body: "Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Haftung übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Sobald ich von Rechtsverletzungen Kenntnis erlange, werde ich derartige Links umgehend entfernen.",
+			},
+			{
+				title: "Urheberrecht",
+				body: "Die von mir als Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung. Die hier veröffentlichten White Paper sind ausdrücklich nicht dafür gedacht, als wissenschaftliche Quellen zitiert zu werden.",
+			},
+		],
 	},
 	dataPolicy: {
 		title: "Datenschutz",
