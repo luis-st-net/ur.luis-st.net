@@ -9,6 +9,20 @@
 	
 	--radius: 0.625rem;
 	
+	--font-sans: var(--font-sans);
+	--font-serif: var(--font-serif);
+	--font-mono: var(--font-mono);
+}
+
+/*
+ * Color tokens are mapped with `@theme inline` so the generated utilities
+ * reference `var(--base)` etc. directly instead of a `--color-*` copy baked
+ * onto `:root`. A non-inline copy would be resolved against the light values
+ * at `:root` and inherit down already-resolved, so the reader's `.dark`
+ * override of `--base`/`--ink`/… would have no effect (dark mode would render
+ * as light). Inline keeps resolution per-element, honoring `.dark`.
+ */
+@theme inline {
 	--color-base: var(--base);
 	--color-surface: var(--surface);
 	--color-border: var(--border);
@@ -19,10 +33,6 @@
 	
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
-	
-	--font-sans: var(--font-sans);
-	--font-serif: var(--font-serif);
-	--font-mono: var(--font-mono);
 }
 
 /*
