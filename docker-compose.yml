@@ -1,6 +1,5 @@
 services:
   web:
-    build: .
     image: ur-web:latest
     container_name: ur-web
     healthcheck:
