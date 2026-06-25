@@ -12,7 +12,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
 	title: {
 		default: "Unserious Research",
-		template: "%s — Unserious Research",
+		template: "%s · Unserious Research",
 	},
 	description: "Rigorous answers to questions nobody asked.",
 };

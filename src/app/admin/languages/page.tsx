@@ -58,7 +58,7 @@ export default async function LanguagesPage() {
 				<div className="mt-4 grid gap-4 sm:grid-cols-3">
 					<div className="space-y-1.5">
 						<Label htmlFor="code">{lm.code}</Label>
-						<Input id="code" name="code" placeholder="fr" required/>
+						<Input id="code" name="code" placeholder="FR" required/>
 					</div>
 					<div className="space-y-1.5">
 						<Label htmlFor="name">{lm.name}</Label>
@@ -66,7 +66,7 @@ export default async function LanguagesPage() {
 					</div>
 					<div className="space-y-1.5">
 						<Label htmlFor="translationKey">{lm.translationKey}</Label>
-						<Input id="translationKey" name="translationKey" placeholder="en"/>
+						<Input id="translationKey" name="translationKey" placeholder="fr"/>
 					</div>
 				</div>
 				<div className="mt-4 flex justify-end">

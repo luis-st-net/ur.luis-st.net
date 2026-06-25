@@ -18,12 +18,12 @@ export const en = {
 	},
 	home: {
 		heading: "Unserious Research",
-		intro: "A small pile of white papers I wrote going down rabbit holes.",
-		empty: "No papers published yet. The rabbit holes are still being dug.",
+		intro: "A growing pile of white papers I wrote instead of sleeping, each one a question that did not deserve this much effort.",
+		empty: "Nothing published yet. The rabbit holes are still under construction.",
 		readMore: "Read paper",
 		bannerTitle: "Please do not cite this.",
 		bannerText:
-			"These papers are not actually quotable. They are side quests, not science. Tap to find out what this place is.",
+			"None of this is actually quotable. It's side quests, not science. Tap to find out why you're here.",
 	},
 	paper: {
 		published: "Published",
@@ -40,7 +40,7 @@ export const en = {
 		content: {
 			expand: "Read full paper",
 			collapse: "Close",
-			previewNote: "Preview — expand for the full paper.",
+			previewNote: "Preview. Expand for the full paper.",
 			empty: "There is no written content for this paper.",
 		},
 		sources: {
@@ -68,7 +68,7 @@ export const en = {
 	},
 	vpn: {
 		title: "Restricted area",
-		text: "The admin area is only reachable from inside the VPN. Your connection is not recognised as part of it.",
+		text: "The admin area only opens the door for the VPN. Your connection knocked; nobody recognised it.",
 		continue: "Try anyway",
 		back: "Back to safety",
 	},
@@ -94,6 +94,7 @@ export const en = {
 			title: "Title",
 			description: "Description",
 			abstract: "Abstract (Markdown)",
+			abstractHint: "Just the abstract text, no title or heading. The “Abstract” title is added automatically.",
 			content: "Content",
 			contentUpload: "Upload .md file",
 			contentType: "Type / paste content",
@@ -103,19 +104,24 @@ export const en = {
 			pdfCurrent: "Current PDF",
 			replace: "Replace",
 		},
+		abstractWarning: {
+			title: "Remove the heading",
+			body: "The abstract field should contain only the abstract text. A Markdown heading (# or ##) was found — remove it. The “Abstract” title is rendered automatically.",
+			dismiss: "Got it",
+		},
 		save: "Save",
 		cancel: "Cancel",
 		saving: "Saving…",
 		deleteConfirm: "Delete this paper and all its languages? This cannot be undone.",
 		languageManager: {
-			heading: "Paper languages",
-			hint: "These are the languages papers can be published in. Website text is translated in code; the key maps a language to that text (English is the fallback).",
+			heading: "Languages",
+			hint: "These are the languages papers can be published in. Website text is translated in code, the key maps a language to that text (English is the fallback).",
 			code: "Code",
 			name: "Display name",
 			translationKey: "Translation key",
 			add: "Add language",
 			remove: "Remove",
-			inUse: "In use — cannot remove.",
+			inUse: "In use, cannot be removed.",
 		},
 	},
 	common: {
@@ -126,16 +132,16 @@ export const en = {
 	},
 	about: {
 		title: "About",
-		lead: "Unserious Research is where I write up the side quests.",
+		lead: "Unserious Research is where the side quests get written down at unreasonable length.",
 		body: [
-			"Sometimes a question grabs me by the collar. Not an important question — nobody is waiting for the answer, no grant depends on it, no one will be promoted. Just a question that refuses to leave until I have written several pages at it.",
-			"I went down a rabbit hole and wrote it up. Then another. This site is the pile.",
-			"Everything here is researched with genuine, slightly excessive rigour and absolutely no consequence. Think of it as a lab notebook for curiosity that escaped containment.",
-			"So: rigorous answers to questions nobody asked. Please enjoy them, argue with them, share them — but do not cite them. They are not that kind of paper, and I am not that kind of researcher.",
+			"Every so often a question grabs me by the collar. Not an important one. Nobody is waiting for the answer, no grant depends on it, no one gets promoted. Just a question stubborn enough that the only way to make it leave is to write several pages at it.",
+			"So I go down a rabbit hole and write it up. Then another. This site is the pile that results.",
+			"Everything here is researched with real, faintly excessive rigour and absolutely zero consequence. Treat it as a lab notebook for curiosity that escaped containment and was never recaptured.",
+			"In short: rigorous answers to questions nobody asked. Enjoy them, argue with them, send them to a friend who also didn't ask. Just do not cite them. They are not that kind of paper, and I am very much not that kind of researcher.",
 		],
 		quotableTitle: "Why \"not quotable\"?",
 		quotableBody:
-			"Because these are rabbit holes, not peer-reviewed work. The rigour is real; the stakes are imaginary. If you put one of these in a reference list, that is between you and your conscience.",
+			"Because these are rabbit holes, not peer review. The rigour is real; the stakes are imaginary. If one of these ends up in your reference list, that is a matter between you and your conscience.",
 	},
 	imprint: {
 		title: "Imprint",
@@ -163,7 +169,7 @@ export const en = {
 			},
 			{
 				title: "Your rights",
-				body: "Since effectively no personal data is processed, there is little to request — but you can always contact me using the address in the imprint.",
+				body: "Since effectively no personal data is processed, there is little to request, but you can always contact me using the address in the imprint.",
 			},
 		],
 	},
@@ -185,12 +191,12 @@ export const de: Dictionary = {
 	},
 	home: {
 		heading: "Unserious Research",
-		intro: "Ein kleiner Stapel White Paper, geschrieben in diversen Kaninchenbauten.",
-		empty: "Noch keine Paper veröffentlicht. Die Kaninchenbauten werden noch gegraben.",
+		intro: "Ein wachsender Stapel White Paper, geschrieben statt zu schlafen. Jedes davon eine Frage, die so viel Mühe eigentlich nicht verdient hatte.",
+		empty: "Noch nichts veröffentlicht. Die rabbit holes werden noch gegraben.",
 		readMore: "Paper lesen",
 		bannerTitle: "Bitte nicht zitieren.",
 		bannerText:
-			"Diese Paper sind nicht wirklich zitierfähig. Es sind Side Quests, keine Wissenschaft. Tippen, um zu erfahren, was das hier ist.",
+			"Nichts davon ist wirklich zitierfähig. Das hier sind side quests, keine Wissenschaft. Tippen, um herauszufinden, warum du hier bist.",
 	},
 	paper: {
 		published: "Veröffentlicht",
@@ -207,7 +213,7 @@ export const de: Dictionary = {
 		content: {
 			expand: "Ganzes Paper lesen",
 			collapse: "Schließen",
-			previewNote: "Vorschau — zum vollständigen Paper aufklappen.",
+			previewNote: "Vorschau. Zum vollständigen Paper aufklappen.",
 			empty: "Für dieses Paper gibt es keinen geschriebenen Inhalt.",
 		},
 		sources: {
@@ -231,11 +237,11 @@ export const de: Dictionary = {
 	footer: {
 		imprint: "Impressum",
 		dataPolicy: "Datenschutz",
-		rights: "Alle Kaninchenbauten vorbehalten.",
+		rights: "Alle rabbit holes vorbehalten.",
 	},
 	vpn: {
 		title: "Geschützter Bereich",
-		text: "Der Admin-Bereich ist nur aus dem VPN erreichbar. Deine Verbindung wird nicht als Teil davon erkannt.",
+		text: "Der Admin-Bereich öffnet nur dem VPN die Tür. Deine Verbindung hat geklopft; erkannt hat sie niemand.",
 		continue: "Trotzdem versuchen",
 		back: "Zurück in Sicherheit",
 	},
@@ -261,6 +267,7 @@ export const de: Dictionary = {
 			title: "Titel",
 			description: "Beschreibung",
 			abstract: "Abstract (Markdown)",
+			abstractHint: "Nur der Abstract-Text, kein Titel und keine Überschrift. Der Titel „Abstract“ wird automatisch hinzugefügt.",
 			content: "Inhalt",
 			contentUpload: ".md-Datei hochladen",
 			contentType: "Inhalt eingeben / einfügen",
@@ -270,19 +277,24 @@ export const de: Dictionary = {
 			pdfCurrent: "Aktuelles PDF",
 			replace: "Ersetzen",
 		},
+		abstractWarning: {
+			title: "Überschrift entfernen",
+			body: "Das Abstract-Feld sollte nur den Abstract-Text enthalten. Es wurde eine Markdown-Überschrift (# oder ##) gefunden — bitte entfernen. Der Titel „Abstract“ wird automatisch gerendert.",
+			dismiss: "Verstanden",
+		},
 		save: "Speichern",
 		cancel: "Abbrechen",
 		saving: "Speichern…",
 		deleteConfirm: "Dieses Paper und alle Sprachen löschen? Das kann nicht rückgängig gemacht werden.",
 		languageManager: {
-			heading: "Paper-Sprachen",
-			hint: "Das sind die Sprachen, in denen Paper veröffentlicht werden können. Website-Text wird im Code übersetzt; der Schlüssel ordnet eine Sprache diesem Text zu (Englisch ist der Fallback).",
+			heading: "Sprachen",
+			hint: "Das sind die Sprachen, in denen Paper veröffentlicht werden können. Website-Text wird im Code übersetzt, der Schlüssel ordnet eine Sprache diesem Text zu (Englisch ist der Fallback).",
 			code: "Code",
 			name: "Anzeigename",
 			translationKey: "Übersetzungsschlüssel",
 			add: "Sprache hinzufügen",
 			remove: "Entfernen",
-			inUse: "In Verwendung — nicht entfernbar.",
+			inUse: "In Verwendung, nicht entfernbar.",
 		},
 	},
 	common: {
@@ -293,16 +305,16 @@ export const de: Dictionary = {
 	},
 	about: {
 		title: "Über",
-		lead: "Unserious Research ist der Ort, an dem ich die Side Quests aufschreibe.",
+		lead: "Unserious Research ist der Ort, an dem die side quests in unangemessener Länge aufgeschrieben werden.",
 		body: [
-			"Manchmal packt mich eine Frage am Kragen. Keine wichtige Frage — niemand wartet auf die Antwort, kein Fördergeld hängt daran, niemand wird befördert. Nur eine Frage, die nicht weggeht, bis ich mehrere Seiten gegen sie geschrieben habe.",
-			"Ich bin in einen Kaninchenbau gefallen und habe es aufgeschrieben. Dann noch einen. Diese Seite ist der Stapel.",
-			"Alles hier ist mit ehrlicher, leicht übertriebener Sorgfalt recherchiert und völlig folgenlos. Eine Art Laborbuch für Neugier, die aus der Quarantäne ausgebrochen ist.",
-			"Also: rigorose Antworten auf Fragen, die niemand gestellt hat. Genieße sie, streite mit ihnen, teile sie — aber zitiere sie nicht. Es sind nicht diese Art Paper, und ich bin nicht diese Art Forscher.",
+			"Hin und wieder packt mich eine Frage am Kragen. Keine wichtige. Niemand wartet auf die Antwort, kein Fördergeld hängt daran, niemand wird befördert. Nur eine Frage, die so stur ist, dass man sie nur loswird, indem man mehrere Seiten gegen sie schreibt.",
+			"Also falle ich in ein rabbit hole und schreibe es auf. Dann noch eins. Diese Seite ist der Stapel, der dabei herauskommt.",
+			"Alles hier ist mit echter, leicht übertriebener Sorgfalt recherchiert und völlig folgenlos. Betrachte es als Laborbuch für Neugier, die aus der Quarantäne ausgebrochen und nie wieder eingefangen wurde.",
+			"Kurz gesagt: rigorose Antworten auf Fragen, die niemand gestellt hat. Genieße sie, streite mit ihnen, schick sie an jemanden, der auch nicht gefragt hat. Nur zitieren solltest du sie nicht. Es sind nicht diese Art Paper, und ich bin erst recht nicht diese Art Forscher.",
 		],
 		quotableTitle: "Warum „nicht zitierfähig“?",
 		quotableBody:
-			"Weil das Kaninchenbauten sind, keine begutachtete Arbeit. Die Sorgfalt ist echt; der Einsatz ist eingebildet. Wenn du eines davon in ein Literaturverzeichnis setzt, ist das zwischen dir und deinem Gewissen.",
+			"Weil das rabbit holes sind, kein Peer Review. Die Sorgfalt ist echt; der Einsatz ist eingebildet. Wenn eines davon in deinem Literaturverzeichnis landet, ist das eine Sache zwischen dir und deinem Gewissen.",
 	},
 	imprint: {
 		title: "Impressum",
@@ -330,7 +342,7 @@ export const de: Dictionary = {
 			},
 			{
 				title: "Deine Rechte",
-				body: "Da praktisch keine personenbezogenen Daten verarbeitet werden, gibt es wenig zu beantragen — du kannst mich aber jederzeit über die Adresse im Impressum kontaktieren.",
+				body: "Da praktisch keine personenbezogenen Daten verarbeitet werden, gibt es wenig zu beantragen. Du kannst mich aber jederzeit über die Adresse im Impressum kontaktieren.",
 			},
 		],
 	},

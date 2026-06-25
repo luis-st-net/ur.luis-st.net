@@ -3,8 +3,7 @@ import { Compass, Quote, Rabbit } from "lucide-react";
 import { getI18n } from "@/lib/i18n/locale";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const { dict } = await getI18n();
-	return { title: dict.about.title };
+	return { title: { absolute: "UR About" } };
 }
 
 export default async function AboutPage() {

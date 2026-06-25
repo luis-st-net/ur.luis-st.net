@@ -10,6 +10,9 @@ import { Textarea } from "@/lib/components/ui/textarea";
 import { cn, shortHash } from "@/lib/utility";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
+/** Matches a Markdown H1/H2 heading line (e.g. "# Title" or "## Title"). */
+const ABSTRACT_HEADING_RE = /^[ \t]*#{1,2}[ \t]+\S/m;
+
 export interface LanguageInitial {
 	translationId?: string;
 	languageId: string;
@@ -36,6 +39,8 @@ export function LanguagePanel({
 	const code = data.code;
 	const isNew = !data.translationId;
 	
+	const [abstractText, setAbstractText] = useState(data.abstract ?? "");
+	const [abstractWarningOpen, setAbstractWarningOpen] = useState(false);
 	const [contentText, setContentText] = useState(data.content ?? "");
 	const [contentFileName, setContentFileName] = useState<string | null>(null);
 	const [pdfFileName, setPdfFileName] = useState<string | null>(null);
@@ -81,10 +86,17 @@ export function LanguagePanel({
 			
 			<div className="space-y-1.5">
 				<Label htmlFor={`${code}-abstract`}>{f.abstract}</Label>
+				<p className="text-xs text-ink-subtle">{f.abstractHint}</p>
 				<Textarea
 					id={`${code}-abstract`}
 					name={`lang.${code}.abstract`}
-					defaultValue={data.abstract}
+					value={abstractText}
+					onChange={(e) => setAbstractText(e.target.value)}
+					onBlur={() => {
+						if (ABSTRACT_HEADING_RE.test(abstractText)) {
+							setAbstractWarningOpen(true);
+						}
+					}}
 					rows={5}
 				/>
 			</div>
@@ -178,6 +190,20 @@ export function LanguagePanel({
 				/>
 			</div>
 			
+			<Dialog open={abstractWarningOpen} onOpenChange={setAbstractWarningOpen}>
+				<DialogContent className="max-w-md">
+					<DialogHeader>
+						<DialogTitle>{dict.admin.abstractWarning.title}</DialogTitle>
+					</DialogHeader>
+					<p className="text-sm text-ink-muted">{dict.admin.abstractWarning.body}</p>
+					<DialogFooter>
+						<Button onClick={() => setAbstractWarningOpen(false)}>
+							{dict.admin.abstractWarning.dismiss}
+						</Button>
+					</DialogFooter>
+				</DialogContent>
+			</Dialog>
+
 			<Dialog open={contentDialogOpen} onOpenChange={setContentDialogOpen}>
 				<DialogContent className="max-w-2xl">
 					<DialogHeader>

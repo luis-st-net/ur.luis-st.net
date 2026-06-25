@@ -33,7 +33,9 @@ ENV HOSTNAME="0.0.0.0"
 
 EXPOSE 3000
 
-RUN npx prisma db push
-RUN npx prisma db seed
+# Schema push + seed happen at container start (they need a live DB), not here.
+COPY docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
 
-CMD ["node", "server.js"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["npx", "next", "start"]

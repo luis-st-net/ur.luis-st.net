@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { isAdminAllowed } from "@/lib/ip";
 
 export function middleware(req: NextRequest) {
-	if (process.env.NODE_ENV !== "production") {
+	if (process.env.NODE_ENV !== "production" || process.env.DISABLE_ADMIN_GATE === "true") {
 		return NextResponse.next();
 	}
 	

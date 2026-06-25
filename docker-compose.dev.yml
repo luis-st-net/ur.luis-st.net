@@ -25,6 +25,7 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
       ADMIN_ALLOWED_CIDR: ${ADMIN_ALLOWED_CIDR}
+      DISABLE_ADMIN_GATE: "true"
       WEBSITE_OWNER: ${WEBSITE_OWNER}
       OWNER_STREET: ${OWNER_STREET}
       OWNER_CITY: ${OWNER_CITY}
