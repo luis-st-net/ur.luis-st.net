@@ -19,7 +19,7 @@ export default async function VpnRequiredPage() {
 					<Link href="/">{dict.vpn.back}</Link>
 				</Button>
 				<Button asChild>
-					<Link href="/admin">{dict.vpn.continue}</Link>
+					<Link href="/admin?continue=1">{dict.vpn.continue}</Link>
 				</Button>
 			</div>
 		</div>

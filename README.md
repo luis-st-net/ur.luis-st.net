@@ -1,6 +1,6 @@
 # Unserious Research
 
-> Rigorous answers to questions nobody asked.
+> Unreasonably thorough answers to questions nobody asked.
 
 A small Next.js site for publishing not-quite-academic white papers, running at
 `ur.luis-st.net`. A public part lists and renders the papers; a VPN-protected
@@ -34,10 +34,15 @@ admin part manages them.
 
 `/admin` is gated two ways:
 
-1. **nginx** restricts the route to `10.2.0.0/16` (see `nginx.example.conf`).
+1. **nginx** restricts the route to `10.2.0.0/16` (`allow`/`deny`). On denial it
+   hands off to an `@admin_denied` handler: a first visit gets the friendly
+   `/vpn-required` warning page, while "Continue anyway" (which links to
+   `/admin?continue=1`) gets nginx's real 403. So the warning page renders once
+   and the continue button lands on the actual block (see `nginx.example.conf`).
 2. **Middleware** (`src/middleware.ts`) re-checks the forwarded client IP
-   against `ADMIN_ALLOWED_CIDR` and rewrites outside requests to a warning page.
-   The gate is bypassed when `NODE_ENV !== production` for local development.
+   against `ADMIN_ALLOWED_CIDR` and rewrites outside requests to the warning
+   page as defense-in-depth. The gate is bypassed when `NODE_ENV !== production`
+   for local development.
 
 ## Configuration
 
