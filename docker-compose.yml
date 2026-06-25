@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    image: ur-web:latest
+    container_name: ur-web
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:3000', (res) => process.exit(res.statusCode === 200 ? 0 : 1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@host.docker.internal:5432/${POSTGRES_DB}?schema=public
+
+      ADMIN_ALLOWED_CIDR: ${ADMIN_ALLOWED_CIDR}
+
+      WEBSITE_OWNER: ${WEBSITE_OWNER}
+      OWNER_STREET: ${OWNER_STREET}
+      OWNER_CITY: ${OWNER_CITY}
+      OWNER_COUNTRY: ${OWNER_COUNTRY}
+      OWNER_MAIL: ${OWNER_MAIL}
+    ports:
+      - "3008:3000"
+    restart: unless-stopped
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

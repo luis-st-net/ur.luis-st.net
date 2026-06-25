@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: ur-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ur-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  web:
+    image: ur-web:latest
+    build: .
+    container_name: ur-web
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+      ADMIN_ALLOWED_CIDR: ${ADMIN_ALLOWED_CIDR}
+      WEBSITE_OWNER: ${WEBSITE_OWNER}
+      OWNER_STREET: ${OWNER_STREET}
+      OWNER_CITY: ${OWNER_CITY}
+      OWNER_COUNTRY: ${OWNER_COUNTRY}
+      OWNER_MAIL: ${OWNER_MAIL}
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:3000', (res) => process.exit(res.statusCode === 200 ? 0 : 1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+volumes:
+  ur-db-data:

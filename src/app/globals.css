@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	--breakpoint-xs: 30rem;
+	--breakpoint-3xl: 112rem;
+	
+	--radius: 0.625rem;
+	
+	--color-base: var(--base);
+	--color-surface: var(--surface);
+	--color-border: var(--border);
+	
+	--color-ink: var(--ink);
+	--color-ink-muted: var(--ink-muted);
+	--color-ink-subtle: var(--ink-subtle);
+	
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	
+	--font-sans: var(--font-sans);
+	--font-serif: var(--font-serif);
+	--font-mono: var(--font-mono);
+}
+
+/*
+ * The public site is intentionally always light, built on the warm paper
+ * base color requested in the spec. Only the fullscreen paper reader opts
+ * into theme switching, so dark-mode variables live under `.dark` and are
+ * scoped to that subtree.
+ */
+:root {
+	--base: #FBFAF8;
+	--surface: #FFFFFF;
+	--border: #E7E3DB;
+	
+	--ink: #1F1B16;
+	--ink-muted: #5B5349;
+	--ink-subtle: #8A8175;
+	
+	--accent: #8A5A2B;
+	--accent-foreground: #FBFAF8;
+}
+
+.dark {
+	--base: #14110D;
+	--surface: #1C1813;
+	--border: #322C23;
+	
+	--ink: #EFEAE1;
+	--ink-muted: #B7AE9F;
+	--ink-subtle: #847C6E;
+	
+	--accent: #D6A66A;
+	--accent-foreground: #14110D;
+}
+
+* {
+	border-color: var(--border);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--base);
+	color: var(--ink);
+	font-family: var(--font-sans), system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* ---- Rendered markdown (prose) ---- */
+.prose {
+	color: var(--ink);
+	line-height: 1.75;
+	overflow-wrap: break-word;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+	font-family: var(--font-serif), Georgia, serif;
+	font-weight: 600;
+	line-height: 1.25;
+	margin-top: 1.6em;
+	margin-bottom: 0.6em;
+}
+
+.prose h1 {
+	font-size: 1.9rem;
+}
+
+.prose h2 {
+	font-size: 1.55rem;
+}
+
+.prose h3 {
+	font-size: 1.3rem;
+}
+
+.prose h4 {
+	font-size: 1.1rem;
+}
+
+.prose p {
+	margin: 0.9em 0;
+}
+
+.prose a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.prose strong {
+	font-weight: 700;
+}
+
+.prose em {
+	font-style: italic;
+}
+
+.prose del {
+	text-decoration: line-through;
+	color: var(--ink-muted);
+}
+
+.prose ul,
+.prose ol {
+	margin: 0.9em 0;
+	padding-left: 1.5em;
+}
+
+.prose ul {
+	list-style: disc;
+}
+
+.prose ol {
+	list-style: decimal;
+}
+
+.prose li {
+	margin: 0.35em 0;
+}
+
+.prose blockquote {
+	margin: 1.2em 0;
+	padding: 0.4em 1.1em;
+	border-left: 3px solid var(--accent);
+	color: var(--ink-muted);
+	font-style: italic;
+	background: color-mix(in srgb, var(--accent) 6%, transparent);
+	border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.prose code {
+	font-family: var(--font-mono), ui-monospace, monospace;
+	font-size: 0.875em;
+}
+
+.prose :not(pre) > code {
+	background: color-mix(in srgb, var(--ink) 8%, transparent);
+	padding: 0.15em 0.4em;
+	border-radius: 4px;
+}
+
+.prose pre {
+	margin: 1.2em 0;
+	padding: 1em 1.1em;
+	border-radius: var(--radius);
+	overflow-x: auto;
+	background: #2b2b2b;
+	color: #f8f8f2;
+	font-size: 0.85rem;
+	line-height: 1.6;
+}
+
+.prose pre code {
+	background: none;
+	padding: 0;
+}
+
+.prose hr {
+	margin: 2em 0;
+	border: 0;
+	border-top: 1px solid var(--border);
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.2em 0;
+	font-size: 0.95em;
+}
+
+.prose th,
+.prose td {
+	border: 1px solid var(--border);
+	padding: 0.5em 0.75em;
+	text-align: left;
+}
+
+.prose th {
+	background: color-mix(in srgb, var(--ink) 5%, transparent);
+	font-weight: 600;
+}
+
+.prose img {
+	max-width: 100%;
+	border-radius: var(--radius);
+}
+
+/* Fade-out preview used on the Content tab */
+.content-fade {
+	position: relative;
+	max-height: 22rem;
+	overflow: hidden;
+}
+
+.content-fade::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 9rem;
+	background: linear-gradient(to bottom, transparent, var(--surface) 92%);
+	pointer-events: none;
+}
