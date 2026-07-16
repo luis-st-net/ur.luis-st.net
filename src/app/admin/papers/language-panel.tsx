@@ -7,7 +7,7 @@ import { Button } from "@/lib/components/ui/button";
 import { Input } from "@/lib/components/ui/input";
 import { Label } from "@/lib/components/ui/label";
 import { Textarea } from "@/lib/components/ui/textarea";
-import { cn, shortHash } from "@/lib/utility";
+import { cn, generatePdfFileName, shortHash } from "@/lib/utility";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 /** Matches a Markdown H1/H2 heading line (e.g. "# Title" or "## Title"). */
@@ -43,7 +43,12 @@ export function LanguagePanel({
 	const [abstractWarningOpen, setAbstractWarningOpen] = useState(false);
 	const [contentText, setContentText] = useState(data.content ?? "");
 	const [contentFileName, setContentFileName] = useState<string | null>(null);
-	const [pdfFileName, setPdfFileName] = useState<string | null>(null);
+	const [titleText, setTitleText] = useState(data.title ?? "");
+	const [pdfFileNameValue, setPdfFileNameValue] = useState(
+		data.pdfFileName || generatePdfFileName(data.title ?? "", code),
+	);
+	const [pdfFileNameTouched, setPdfFileNameTouched] = useState(Boolean(data.pdfFileName));
+	const [uploadedPdfName, setUploadedPdfName] = useState<string | null>(null);
 	const [bibtexFileName, setBibtexFileName] = useState<string | null>(null);
 	const [contentDialogOpen, setContentDialogOpen] = useState(false);
 	const [draftText, setDraftText] = useState(contentText);
@@ -67,7 +72,13 @@ export function LanguagePanel({
 				<Input
 					id={`${code}-title`}
 					name={`lang.${code}.title`}
-					defaultValue={data.title}
+					value={titleText}
+					onChange={(e) => {
+						setTitleText(e.target.value);
+						if (!pdfFileNameTouched) {
+							setPdfFileNameValue(generatePdfFileName(e.target.value, code));
+						}
+					}}
 					required
 				/>
 			</div>
@@ -162,7 +173,6 @@ export function LanguagePanel({
 				{!isNew && data.pdfHash && (
 					<p className="text-xs text-ink-subtle">
 						{f.pdfCurrent}: {data.pdfFileName || "paper.pdf"} · SHA-256 {shortHash(data.pdfHash, 12, 8)}
-						{pdfFileName && <span className="ml-1 text-accent">→ {pdfFileName}</span>}
 					</p>
 				)}
 				<Input
@@ -171,7 +181,25 @@ export function LanguagePanel({
 					accept="application/pdf,.pdf"
 					name={`lang.${code}.pdf`}
 					required={isNew}
-					onChange={(e) => setPdfFileName(e.target.files?.[0]?.name ?? null)}
+					onChange={(e) => setUploadedPdfName(e.target.files?.[0]?.name ?? null)}
+				/>
+				{uploadedPdfName && (
+					<p className="text-xs text-accent">{f.pdfNewFile}: {uploadedPdfName}</p>
+				)}
+			</div>
+			
+			{/* PDF file name */}
+			<div className="space-y-1.5">
+				<Label htmlFor={`${code}-pdfFileName`}>{f.pdfFileName}</Label>
+				<p className="text-xs text-ink-subtle">{f.pdfFileNameHint}</p>
+				<Input
+					id={`${code}-pdfFileName`}
+					name={`lang.${code}.pdfFileName`}
+					value={pdfFileNameValue}
+					onChange={(e) => {
+						setPdfFileNameTouched(true);
+						setPdfFileNameValue(e.target.value);
+					}}
 				/>
 			</div>
 			

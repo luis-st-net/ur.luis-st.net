@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/lib/components/header";
 import { Footer } from "@/lib/components/footer";
 import { getLocale } from "@/lib/i18n/locale";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Lora({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
@@ -22,7 +23,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	const locale = await getLocale();
 	
 	return (
-		<html lang={locale} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+		<html
+			lang={locale}
+			className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+			suppressHydrationWarning
+		>
+		<head>
+			<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}/>
+		</head>
 		<body className="flex min-h-screen flex-col">
 		<Header/>
 		<main className="flex-1">{children}</main>

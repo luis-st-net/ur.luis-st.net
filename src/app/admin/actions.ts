@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { sha256 } from "@/lib/hash";
+import { normalizePdfFileName } from "@/lib/utility";
 import { parseBibtex, type ParsedSource } from "@/lib/bibtex";
 
 function str(formData: FormData, key: string): string {
@@ -95,6 +96,7 @@ export async function createPaperAction(formData: FormData): Promise<void> {
 		const pdf = await fileToBuffer(pdfFile);
 		const content = await resolveContent(formData, code);
 		const sources = (await resolveSources(formData, code)) ?? [];
+		const pdfFileNameRaw = str(formData, `lang.${code}.pdfFileName`).trim();
 		
 		translations.push({
 			language: { connect: { id: languageId } },
@@ -104,7 +106,7 @@ export async function createPaperAction(formData: FormData): Promise<void> {
 			content,
 			pdf,
 			pdfHash: sha256(pdf),
-			pdfFileName: pdfFile.name || null,
+			pdfFileName: normalizePdfFileName(pdfFileNameRaw) || pdfFile.name || null,
 			sources: { create: sourcesToCreate(sources) },
 		});
 	}
@@ -175,15 +177,19 @@ export async function updatePaperAction(formData: FormData): Promise<void> {
 		const content = await resolveContent(formData, code);
 		const newSources = await resolveSources(formData, code);
 		const pdfFile = fileOrNull(formData, `lang.${code}.pdf`);
+		const pdfFileNameRaw = str(formData, `lang.${code}.pdfFileName`).trim();
+		const pdfFileName = pdfFileNameRaw ? normalizePdfFileName(pdfFileNameRaw) : undefined;
 		
 		if (translationId) {
 			// Update existing variant.
 			const pdfData = pdfFile
 				? await (async () => {
 					const pdf = await fileToBuffer(pdfFile);
-					return { pdf, pdfHash: sha256(pdf), pdfFileName: pdfFile.name || null };
+					return { pdf, pdfHash: sha256(pdf), pdfFileName: pdfFileName ?? pdfFile.name ?? null };
 				})()
-				: {};
+				: pdfFileName !== undefined
+					? { pdfFileName }
+					: {};
 			
 			await prisma.paperTranslation.update({
 				where: { id: translationId },
@@ -221,7 +227,7 @@ export async function updatePaperAction(formData: FormData): Promise<void> {
 					content,
 					pdf,
 					pdfHash: sha256(pdf),
-					pdfFileName: pdfFile.name || null,
+					pdfFileName: pdfFileName ?? pdfFile.name ?? null,
 					sources: { create: sourcesToCreate(newSources ?? []) },
 				},
 			});

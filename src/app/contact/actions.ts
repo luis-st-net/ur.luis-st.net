@@ -2,17 +2,8 @@
 
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
-import {
-	contactFormSchema,
-	verificationFormSchema,
-	type ContactFormValues,
-	type VerificationFormValues,
-} from "./schema";
-import {
-	generateVerificationCode,
-	generateVerificationToken,
-	verifyToken,
-} from "@/lib/verification-token";
+import { contactFormSchema, type ContactFormValues, verificationFormSchema, type VerificationFormValues } from "./schema";
+import { generateVerificationCode, generateVerificationToken, verifyToken } from "@/lib/verification-token";
 
 const contactTransporter = nodemailer.createTransport({
 	host: process.env.CONTACT_SMTP_HOST,
@@ -52,14 +43,14 @@ export async function initiateMailVerification(contactData: ContactFormValues) {
 		if (contactData.bot === true) {
 			return { success: false, verificationToken: "", message: "bot" };
 		}
-
+		
 		const verificationCode = generateVerificationCode();
 		const token = generateVerificationToken({
 			mail: contactData.mail,
 			code: verificationCode,
 			formData: contactData,
 		});
-
+		
 		const mailOptions: Mail.Options = {
 			from: process.env.VERIFICATION_SMTP_USER,
 			to: contactData.mail,
@@ -73,9 +64,9 @@ export async function initiateMailVerification(contactData: ContactFormValues) {
 				</div>
 			`,
 		};
-
+		
 		await verificationTransporter.sendMail(mailOptions);
-
+		
 		return {
 			success: true,
 			verificationToken: token,
@@ -93,7 +84,7 @@ export async function verifyAndSendContactMail(verificationData: VerificationFor
 		if (!result.success) {
 			return { success: false, message: "validation" };
 		}
-
+		
 		const payload = verifyToken(verificationData.verificationToken);
 		if (!payload) {
 			return { success: false, message: "expired" };
@@ -101,10 +92,10 @@ export async function verifyAndSendContactMail(verificationData: VerificationFor
 		if (payload.code !== verificationData.verificationCode) {
 			return { success: false, message: "invalidCode" };
 		}
-
+		
 		const data = payload.formData as ContactFormValues;
 		const recipient = process.env.CONTACT_MAIL_TO || process.env.CONTACT_SMTP_USER;
-
+		
 		const mailOptions: Mail.Options = {
 			from: `"${data.name} via Contact Form" <${process.env.CONTACT_SMTP_USER}>`,
 			to: recipient,
@@ -120,9 +111,9 @@ export async function verifyAndSendContactMail(verificationData: VerificationFor
 				</div>
 			`,
 		};
-
+		
 		await contactTransporter.sendMail(mailOptions);
-
+		
 		return { success: true, message: "sent" };
 	} catch (error) {
 		console.error("Error sending mail:", error);

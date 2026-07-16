@@ -41,7 +41,7 @@ export default async function ImprintPage() {
 					<p className="text-ink-muted">{contact.representedBy}</p>
 				</div>
 			)}
-
+			
 			<div className="mt-8">
 				<p className="font-medium text-ink">{dict.imprint.contact}</p>
 				{contact.mail && (

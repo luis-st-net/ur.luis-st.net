@@ -50,7 +50,7 @@
 	--ink-muted: #5B5349;
 	--ink-subtle: #8A8175;
 	
-	--accent: #8A5A2B;
+	--accent: #1D4ED8;
 	--accent-foreground: #FBFAF8;
 }
 
@@ -63,8 +63,47 @@
 	--ink-muted: #B7AE9F;
 	--ink-subtle: #847C6E;
 	
-	--accent: #D6A66A;
+	--accent: #60A5FA;
 	--accent-foreground: #14110D;
+}
+
+/*
+ * Accent color themes, picked from the header's theme switcher and stored
+ * in localStorage as `data-theme` on <html> (see src/lib/theme.ts). Blue
+ * (above) is the default when no theme has been chosen yet. `.dark` is only
+ * ever toggled within the fullscreen paper reader (see reader.tsx), so each
+ * theme needs a light override plus a nested `.dark` override for it.
+ */
+[data-theme="green"] {
+	--accent: #047857;
+}
+
+[data-theme="green"] .dark {
+	--accent: #6EE7B7;
+}
+
+[data-theme="crimson"] {
+	--accent: #B91C1C;
+}
+
+[data-theme="crimson"] .dark {
+	--accent: #F87171;
+}
+
+[data-theme="indigo"] {
+	--accent: #4338CA;
+}
+
+[data-theme="indigo"] .dark {
+	--accent: #A5B4FC;
+}
+
+[data-theme="orange"] {
+	--accent: #B45309;
+}
+
+[data-theme="orange"] .dark {
+	--accent: #FCD34D;
 }
 
 * {

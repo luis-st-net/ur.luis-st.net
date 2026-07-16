@@ -53,7 +53,7 @@ export default async function PaperPage({
 	const hasContent = active.content.trim().length > 0;
 	
 	return (
-		<div className="mx-auto w-full max-w-3xl px-4 py-10">
+		<div className="mx-auto w-full max-w-3xl px-4 py-10 lg:max-w-4xl xl:max-w-5xl">
 			<Link
 				href="/"
 				className="mb-6 inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FlaskConical, Shield } from "lucide-react";
 import { Button } from "@/lib/components/ui/button";
 import { LanguageSwitcher } from "@/lib/components/language-switcher";
+import { ThemeSwitcher } from "@/lib/components/theme-switcher";
 import { getI18n } from "@/lib/i18n/locale";
 
 export async function Header() {
@@ -26,8 +27,9 @@ export async function Header() {
 					<Button asChild variant="ghost" size="sm">
 						<Link href="/contact">{dict.nav.contact}</Link>
 					</Button>
-
+					
 					<LanguageSwitcher locale={locale} label={dict.nav.language}/>
+					<ThemeSwitcher label={dict.nav.theme} names={dict.theme}/>
 					
 					<Button asChild variant="outline" size="sm" className="ml-1">
 						<Link href="/admin">

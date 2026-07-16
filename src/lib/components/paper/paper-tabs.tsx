@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Download, Expand, ExternalLink, Hash } from "lucide-react";
+import { Check, Copy, Download, Expand, ExternalLink, Hash } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/components/ui/tabs";
 import { Button } from "@/lib/components/ui/button";
 import { Reader } from "@/lib/components/paper/reader";
+import { shortHash } from "@/lib/utility";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 const TAB_VALUES = ["abstract", "content", "sources", "download"] as const;
@@ -50,7 +51,18 @@ export function PaperTabs({
 	dict: Dictionary;
 }) {
 	const [readerOpen, setReaderOpen] = useState(false);
+	const [copiedCode, setCopiedCode] = useState<string | null>(null);
 	const hasSources = sources.length > 0;
+	
+	async function copyHash(code: string, hash: string) {
+		try {
+			await navigator.clipboard.writeText(hash);
+			setCopiedCode(code);
+			setTimeout(() => setCopiedCode((current) => (current === code ? null : current)), 1500);
+		} catch {
+			// Clipboard access unavailable (permissions/unsupported) — no feedback to show.
+		}
+	}
 	
 	const router = useRouter();
 	const pathname = usePathname();
@@ -153,12 +165,30 @@ export function PaperTabs({
 							>
 								<div className="min-w-0">
 									<p className="font-medium text-ink">{d.name}</p>
-									<p className="mt-0.5 inline-flex items-center gap-1 font-mono text-xs text-ink-subtle">
-										<Hash className="size-3"/>
-										<span className="break-all">
-											{dict.paper.download.sha256}: {d.hash}
+									<div className="mt-0.5 flex flex-wrap items-center gap-1 font-mono text-xs text-ink-subtle">
+										<Hash className="size-3 shrink-0"/>
+										<span>
+											{dict.paper.download.sha256}:{" "}
+											<span className="sm:hidden">{shortHash(d.hash, 8, 6)}</span>
+											<span className="hidden break-all sm:inline">{d.hash}</span>
 										</span>
-									</p>
+										<button
+											type="button"
+											onClick={() => copyHash(d.code, d.hash)}
+											className="inline-flex items-center gap-1 rounded px-1 py-0.5 text-ink-subtle transition-colors hover:bg-ink/5 hover:text-ink"
+											aria-label={dict.paper.download.copyHash}
+											title={dict.paper.download.copyHash}
+										>
+											{copiedCode === d.code ? (
+												<>
+													<Check className="size-3"/>
+													<span>{dict.paper.download.copied}</span>
+												</>
+											) : (
+												<Copy className="size-3"/>
+											)}
+										</button>
+									</div>
 								</div>
 								<Button asChild size="sm" className="shrink-0">
 									<a href={d.href}>

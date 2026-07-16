@@ -9,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
 	const { dict } = await getI18n();
-
+	
 	return (
 		<div className="mx-auto w-full max-w-2xl px-4 py-12">
 			<h1 className="font-serif text-4xl font-semibold text-ink">{dict.contact.title}</h1>
 			<p className="mt-4 max-w-prose text-ink-muted">{dict.contact.lead}</p>
-
-			<ContactForm dict={dict} />
+			
+			<ContactForm dict={dict}/>
 		</div>
 	);
 }

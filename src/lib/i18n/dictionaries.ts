@@ -16,6 +16,7 @@ export const en = {
 		contact: "Contact",
 		admin: "Admin",
 		language: "Language",
+		theme: "Theme color",
 	},
 	home: {
 		heading: "Unserious Research",
@@ -52,6 +53,8 @@ export const en = {
 			pdf: "Download PDF",
 			sha256: "SHA-256",
 			language: "Language",
+			copyHash: "Copy hash",
+			copied: "Copied",
 		},
 	},
 	reader: {
@@ -102,6 +105,9 @@ export const en = {
 			contentType: "Type / paste content",
 			contentModalTitle: "Paper content (Markdown)",
 			pdf: "PDF file",
+			pdfNewFile: "New file selected",
+			pdfFileName: "PDF file name",
+			pdfFileNameHint: "Used for the downloaded file. Auto-generated from the title until you edit it.",
 			bibtex: "BibTeX sources (optional, .bib)",
 			pdfCurrent: "Current PDF",
 			replace: "Replace",
@@ -131,6 +137,13 @@ export const en = {
 		none: "None",
 		required: "required",
 		optional: "optional",
+	},
+	theme: {
+		blue: "Blue",
+		green: "Green",
+		crimson: "Crimson",
+		indigo: "Indigo",
+		orange: "Orange",
 	},
 	about: {
 		title: "About",
@@ -252,6 +265,7 @@ export const de: Dictionary = {
 		contact: "Kontakt",
 		admin: "Admin",
 		language: "Sprache",
+		theme: "Themenfarbe",
 	},
 	home: {
 		heading: "Unserious Research",
@@ -288,6 +302,8 @@ export const de: Dictionary = {
 			pdf: "PDF herunterladen",
 			sha256: "SHA-256",
 			language: "Sprache",
+			copyHash: "Hash kopieren",
+			copied: "Kopiert",
 		},
 	},
 	reader: {
@@ -338,6 +354,9 @@ export const de: Dictionary = {
 			contentType: "Inhalt eingeben / einfügen",
 			contentModalTitle: "Paper-Inhalt (Markdown)",
 			pdf: "PDF-Datei",
+			pdfNewFile: "Neue Datei ausgewählt",
+			pdfFileName: "PDF-Dateiname",
+			pdfFileNameHint: "Wird für die heruntergeladene Datei verwendet. Automatisch aus dem Titel generiert, solange du ihn nicht bearbeitest.",
 			bibtex: "BibTeX-Quellen (optional, .bib)",
 			pdfCurrent: "Aktuelles PDF",
 			replace: "Ersetzen",
@@ -367,6 +386,13 @@ export const de: Dictionary = {
 		none: "Keine",
 		required: "erforderlich",
 		optional: "optional",
+	},
+	theme: {
+		blue: "Blau",
+		green: "Grün",
+		crimson: "Karmesinrot",
+		indigo: "Indigo",
+		orange: "Orange",
 	},
 	about: {
 		title: "Über",
