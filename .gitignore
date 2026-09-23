@@ -1,7 +1,13 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
 
 # next.js
 /.next/
@@ -23,13 +29,17 @@ yarn-error.log*
 .env
 .env*.local
 
+# vercel
+.vercel
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
+# webstorm
+/.idea/
+
 # prisma
+/prisma/migrations
 /prisma/*.db
 /src/generated
-
-# docker image tarballs
-*.tar
