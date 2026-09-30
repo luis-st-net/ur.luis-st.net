@@ -1,41 +1,55 @@
-# Build image on host (windows only):
-#  docker buildx build --load --platform linux/arm64 -t ur-web:<version> .
-#  docker save -o D:\Programmieren\Docker\Images\Main-Website\ur-web-<version>.tar main-web
-#  docker load -i ./ur-web-<version>.tar
-# Build image on remote:
-#  docker build -t ur-web:<version> .
-# Update the container:
-#  docker stop ur-web
-#  docker rm ur-web
-#  docker run -d -p 3000:3000 --restart unless-stopped --name ur-web ur-web:<version>
-# With docker compose:
-#  docker compose up -d --build
+FROM node:lts-alpine AS deps
+WORKDIR /app
+RUN apk add --no-cache openssl
+COPY package.json package-lock.json prisma.config.ts ./
+COPY prisma ./prisma
+RUN npm ci
 
-FROM node:lts-alpine
+FROM node:lts-alpine AS builder
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
 
+FROM node:lts-alpine AS prisma-tools
+WORKDIR /tools
+RUN apk add --no-cache openssl
+COPY --from=deps /app/node_modules ./lock
+RUN v() { node -p "require('./lock/$1/package.json').version"; } \
+	&& npm init -y > /dev/null \
+	&& npm install --omit=peer \
+		prisma@$(v prisma) \
+		tsx@$(v tsx) \
+		dotenv@$(v dotenv) \
+		@prisma/client@$(v @prisma/client) \
+		@prisma/adapter-pg@$(v @prisma/adapter-pg) \
+	&& rm -rf lock ~/.npm \
+	&& find node_modules/@prisma/client/runtime -regex '.*\.\(sqlserver\|cockroachdb\|mysql\|sqlite\)\..*' -delete
+
+FROM node:lts-alpine AS runner
 WORKDIR /app
 
 RUN apk add --no-cache openssl
-
-COPY package.json package-lock.json prisma.config.ts ./
-COPY prisma ./prisma
-
-RUN npm ci
-
-COPY . .
-
-RUN npm run build
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+COPY --from=prisma-tools /tools/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/src/generated ./src/generated
+COPY --from=builder /app/prisma.config.ts /app/tsconfig.json ./
+
+COPY --chmod=755 docker-entrypoint.sh ./
+RUN mkdir -p .next/cache && chown node:node .next/cache
+
+USER node
+
 EXPOSE 3000
 
-# Schema push + seed happen at container start (they need a live DB), not here.
-COPY docker-entrypoint.sh ./
-RUN chmod +x docker-entrypoint.sh
-
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["npx", "next", "start"]
+CMD ["node", "server.js"]
