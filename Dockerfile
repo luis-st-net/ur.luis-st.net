@@ -1,18 +1,18 @@
-FROM node:lts-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 RUN apk add --no-cache openssl
 COPY package.json package-lock.json prisma.config.ts ./
 COPY prisma ./prisma
 RUN npm ci
 
-FROM node:lts-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-FROM node:lts-alpine AS prisma-tools
+FROM node:26-alpine AS prisma-tools
 WORKDIR /tools
 RUN apk add --no-cache openssl
 COPY --from=deps /app/node_modules ./lock
@@ -27,7 +27,7 @@ RUN v() { node -p "require('./lock/$1/package.json').version"; } \
 	&& rm -rf lock ~/.npm \
 	&& find node_modules/@prisma/client/runtime -regex '.*\.\(sqlserver\|cockroachdb\|mysql\|sqlite\)\..*' -delete
 
-FROM node:lts-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 
 RUN apk add --no-cache openssl

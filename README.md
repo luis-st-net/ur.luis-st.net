@@ -57,10 +57,10 @@ Copy `template.env` to `.env` and fill it in. Key variables:
 
 ## Development
 
-Requires **Node 24 (LTS)** for Prisma 7 (20.19+/22.12+ also work). An `.nvmrc` is provided:
+Requires **Node 26**. An `.nvmrc` is provided:
 
 ```bash
-nvm use                     # Node 24.11
+nvm use                     # Node 26
 npm install
 # point DATABASE_URL at a local Postgres, then:
 npx prisma db push
@@ -79,5 +79,5 @@ cp template.env .env        # edit values
 docker compose up -d --build
 ```
 
-The web container (Node 24 base) runs `prisma db push` (sync schema) and
+The web container (Node 26 base) runs `prisma db push` (sync schema) and
 `prisma db seed` on startup. Point nginx at it using `nginx.example.conf`.
